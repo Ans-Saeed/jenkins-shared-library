@@ -1,3 +1,5 @@
+import com.example.Docker
+
 def call(String name){
-    sh "docker push $name"
+ return  new Docker(this).dockerPush(name)
 }
