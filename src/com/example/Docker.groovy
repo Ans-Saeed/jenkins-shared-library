@@ -26,13 +26,13 @@ class Docker implements Serializable {
         script.sh "cd $location && npm --no-git-tag-version version patch"         
         def packageJson = new JsonSlurper().parseText(new File("$location/package.json").text)    
         def version = packageJson.version
-        def imageName="anssaeed/my-repo:$version-$script.BUILD_NUMBER"
+        def imageName="$version-$script.BUILD_NUMBER"
         return imageName            
 }
 
 def commitVersion(){
       withCredentials([
-        usernamePassword(credentialsId:'git-hub-access-key', usernameVariable: 'USER', passwordVariable: 'PASS')
+        script.usernamePassword(credentialsId:'git-hub-access-key', usernameVariable: 'USER', passwordVariable: 'PASS')
     ]){
 
                 script.sh 'echo Minor Version Bump...'
