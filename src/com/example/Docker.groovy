@@ -31,7 +31,7 @@ class Docker implements Serializable {
 }
 
 def commitVersion(){
-      withCredentials([
+      script.withCredentials([
         script.usernamePassword(credentialsId:'git-hub-access-key', usernameVariable: 'USER', passwordVariable: 'PASS')
     ]){
 
