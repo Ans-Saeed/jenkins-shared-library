@@ -26,7 +26,7 @@ class Docker implements Serializable {
         script.sh "cd $location && npm --no-git-tag-version version patch"         
         def packageJson = new JsonSlurper().parseText(new File("$location/package.json").text)    
         def version = packageJson.version
-        def imageName="$version-$script.BUILD_NUMBER"
+        def imageName="anssaeed/my-repo:$version-$script.BUILD_NUMBER"
         return imageName            
 }
 
