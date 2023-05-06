@@ -24,7 +24,7 @@ class Docker implements Serializable {
         script.echo "$location"
         script.sh "cd  $location"
         script.sh 'npm --no-git-tag-version version patch'  
-        def packageJson = readJSON file: 'package.json'
+        def packageJson = readJSON file: "$location/package.json"
         def version = packageJson.version
         def imageName="$version-$script.BUILD_NUMBER"
         return imageName            
