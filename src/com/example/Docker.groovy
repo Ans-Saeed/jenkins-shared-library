@@ -44,4 +44,5 @@ def commitVersion(){
                 script.sh 'git push origin HEAD:jenkins-job'
 
             }        
+    }
 }
