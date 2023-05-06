@@ -21,8 +21,8 @@ class Docker implements Serializable {
     }
 
     def incrementVersion(String location){
-        script.sh "echo $location"
-        script.sh "cd  $location"
+        script.sh "sudo echo $location"
+        script.sh "sudo cd  $location"
         script.sh 'npm --no-git-tag-version version patch'  
         def packageJson = readJSON file: 'package.json'
         def version = packageJson.version
