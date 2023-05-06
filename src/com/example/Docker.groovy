@@ -1,5 +1,6 @@
 #!/usr/bin/env groovy
 package com.example
+import groovy.json.JsonSlurper
 
 class Docker implements Serializable {
  def script
@@ -22,8 +23,8 @@ class Docker implements Serializable {
 
     def incrementVersion(String location){
         script.echo "$location"      
-        script.sh "cd $location && npm --no-git-tag-version version patch"  
-        def packageJson = readJSON file: "$location/package.json"
+        script.sh "cd $location && npm --no-git-tag-version version patch"         
+        def packageJson = new JsonSlurper().parseText(new File("$location/package.json").text)    
         def version = packageJson.version
         def imageName="$version-$script.BUILD_NUMBER"
         return imageName            
